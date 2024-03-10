@@ -1,50 +1,63 @@
-import React, { createContext, useContext, useReducer } from 'react';
+import { createContext, useEffect, useReducer } from "react";
 
-// Define the type for the state managed by the reducer
-interface WeightState {
-    weight: number;
+type weightStateType={
+_id:string,
+weight:number,
+date:string,
+__v:number
+}
+type weightActionType1={
+    type:"ADD_WEIGHTS",
+    payload: weightStateType[]
+}
+type weightActionType2={
+    type:"ADD_WEIGHT",
+    payload:weightStateType
+}
+type weightActionType=weightActionType1 | weightActionType2;
+
+type weightchildtype={
+    children:React.ReactNode
+}
+type valuetype={
+    state:weightStateType[],
+    dispatch:React.Dispatch<weightActionType1 | weightActionType2>
 }
 
-// Define the action types
-type Action =
-    | { type: 'SET_WEIGHT'; payload: number };
-
-// Define the initial state
-const initialState: WeightState = {
-    weight: 0,
-};
-
-// Define the reducer function
-const weightReducer = (state: WeightState, action: Action): WeightState => {
-    switch (action.type) {
-        case 'SET_WEIGHT':
-            return {
-                ...state,
-                weight: action.payload,
-            };
+const weightReducer=(state:weightStateType[],action:weightActionType)=>{
+    switch(action.type){
+        case "ADD_WEIGHTS":
+            return [...action.payload];
+        case "ADD_WEIGHT":
+            return [...state,action.payload]
         default:
             return state;
     }
-};
+}
 
-// Create the context
-const WeightContext = createContext<{ state: WeightState; dispatch: React.Dispatch<Action> }>({
-    state: initialState,
-    dispatch: () => {}
-});
 
-// Custom hook for accessing the context
-const useWeightContext = () => useContext(WeightContext);
+export const WeightContext=createContext<valuetype>({} as valuetype)
 
-// WeightProvider component to wrap your app and provide the context
-const WeightProvider: React.FC = ({ children }) => {
-    const [state, dispatch] = useReducer(weightReducer, initialState);
+const WeightContextProvider=({children}:weightchildtype)=>{
 
-    return (
-        <WeightContext.Provider value={{ state, dispatch }}>
+    const [state,dispatch]=useReducer(weightReducer,[]);
+
+    useEffect(()=>{
+        const getWeights=async()=>{
+            const respose=await fetch("/weights")
+            const weights=await respose.json()
+           
+            if(respose.ok){
+                dispatch({type:"ADD_WEIGHTS",payload:weights})
+            }
+        }
+       getWeights()
+    },[])
+    return(
+        <WeightContext.Provider value={{state,dispatch}}>
             {children}
         </WeightContext.Provider>
-    );
-};
+    )
 
-export { WeightProvider, useWeightContext };
+}
+export default WeightContextProvider;
