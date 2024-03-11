@@ -14,14 +14,18 @@ type weightActionType2={
     type:"ADD_WEIGHT",
     payload:weightStateType
 }
-type weightActionType=weightActionType1 | weightActionType2;
+type weightActionType3={
+    type:"DELETE",
+    payload:weightStateType
+}
+type weightActionType=weightActionType1 | weightActionType2| weightActionType3;
 
 type weightchildtype={
     children:React.ReactNode
 }
 type valuetype={
     state:weightStateType[],
-    dispatch:React.Dispatch<weightActionType1 | weightActionType2>
+    dispatch:React.Dispatch<weightActionType>
 }
 
 const weightReducer=(state:weightStateType[],action:weightActionType)=>{
@@ -30,6 +34,8 @@ const weightReducer=(state:weightStateType[],action:weightActionType)=>{
             return [...action.payload];
         case "ADD_WEIGHT":
             return [...state,action.payload]
+        case "DELETE":
+            return state.filter((weight)=>{return weight._id!==action.payload._id})
         default:
             return state;
     }
