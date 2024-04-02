@@ -1,0 +1,30 @@
+.container {
+    border: 2px solid #ccc;
+    padding: 10px;
+    width: 70%;
+  }
+  
+  .heading {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .weightBox {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .weight {
+    font-size: 18px;
+  }
+  
+  .date {
+    font-size: 14px;
+    color: #666;
+  }
+  #buttonid{
+    border: 0px solid red;
+    background-color: white;
+  }
