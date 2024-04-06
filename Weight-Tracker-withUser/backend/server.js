@@ -10,6 +10,7 @@ app.use(cors())
 app.use(express.json())
 
 app.use("/users",userRouter)
+
 app.use("/weights",weightsRouter)
 mongoose.connect(process.env.MONGODB_URI).then(()=>{
     app.listen(process.env.PORT,()=>{

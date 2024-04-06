@@ -11,12 +11,18 @@ type addweights={
     type:"ADD_WEIGHTS",
 payload:weighttype[]
 }
+
 type deleteweights={
     type:"DELETE_WEIGHTS",
     payload:weighttype
 }
 
-type weightactiontype=addweights|deleteweights
+type addweight={
+type:"ADD_WEIGHT",
+payload:weighttype
+}
+
+type weightactiontype=addweights|deleteweights|addweight
 
 
 type weightcontexttype={
@@ -31,6 +37,8 @@ const WeightReducer=(state:weighttype[],action:weightactiontype)=>{
             return action.payload
         case "DELETE_WEIGHTS":
             return state.filter((weight)=>{return weight._id!==action.payload._id;})
+        case "ADD_WEIGHT":
+            return [...state,action.payload]
         default:
             return state;
     }
