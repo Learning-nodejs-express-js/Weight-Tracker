@@ -20,7 +20,6 @@ const useLogin = () => {
         if(response.ok){
             const user=await response.json();
             dispatch({type:"LOGIN",payload:user});
-            console.log(user)
         }
         else{
             const usererror=await response.json();

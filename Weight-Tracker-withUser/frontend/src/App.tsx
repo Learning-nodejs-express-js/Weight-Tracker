@@ -12,7 +12,7 @@ function App() {
     <Routes>
       <Route path="/login" element={!state ?<Login></Login> : <Home></Home>}></Route>
       <Route path="/signup" element={!state ?<SignUp></SignUp> : <Home></Home>}></Route>
-      <Route path='/' element={(state && state.email) ? <Home></Home> : <></>}></Route>
+      <Route path='/' element={(state && state.email) ? <Home></Home> : <Login></Login> }></Route>
     </Routes>
      
     </>
