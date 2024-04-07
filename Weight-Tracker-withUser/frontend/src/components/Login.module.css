@@ -1,0 +1,77 @@
+/* Login.module.css */
+
+.loginContainer {
+    width: 100%;
+    max-width: 400px; /* Adjust as needed */
+    margin: 0 auto;
+    padding: 20px;
+    /* Add any other styles for the main container */
+  }
+  
+  .loginTitle {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    /* Add any other styles for the title */
+  }
+  
+  .formContainer {
+    /* Add any styles for the form container */
+  }
+  
+  .formContainer label {
+    display: block;
+    margin-bottom: 10px;
+    /* Add any styles for the labels */
+  }
+  
+  .formContainer input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    /* Add any styles for the input fields */
+  }
+  
+  .errorMessage {
+    color: #f44336; /* Example color, adjust as needed */
+    margin-bottom: 10px;
+    /* Add any styles for the error message */
+  }
+  
+  .loginButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4caf50; /* Example color, adjust as needed */
+    color: #fff; /* Example color, adjust as needed */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    /* Add any styles for the login button */
+  }
+  
+  .loginButton:disabled {
+    background-color: #a5d6a7; /* Example color, adjust as needed */
+    cursor: not-allowed;
+  }
+  
+  .loginButton:hover {
+    background-color: #388e3c; /* Example color, adjust as needed */
+  }
+  
+  .toSignupButton {
+    background-color: transparent;
+    border: none;
+    color: #2196f3; /* Example color, adjust as needed */
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+    /* Add any styles for the "to signup" button */
+  }
+  
+  .toSignupButton:hover {
+    text-decoration: underline;
+  }
+  

@@ -1,3 +1,46 @@
-.container{
+/* Home.module.css */
+
+.homeContainer {
+    width: 100%;
+    max-width: 2000px; /* Adjust as needed */
+    margin: 0 auto;
+    padding: 20px;
+    /* Add any other styles for the main container */
+  }
+  
+  .header {
     display: flex;
-}
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px; /* Adjust as needed */
+    /* Add any other styles for the header */
+  }
+  
+  .header h2 {
+    margin: 0;
+    font-size: 24px;
+    /* Add any other styles for the header title */
+  }
+  
+  .logoutButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #f44336; /* Example color, adjust as needed */
+    color: #fff; /* Example color, adjust as needed */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    /* Add any other styles for the logout button */
+  }
+  
+  .logoutButton:hover {
+    background-color: #d32f2f; /* Example color, adjust as needed */
+  }
+  
+  .contentContainer {
+    display: flex;
+    justify-content: space-between;
+    /* Add any other styles for the content container */
+  }
+  

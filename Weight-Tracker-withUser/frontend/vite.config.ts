@@ -6,7 +6,8 @@ export default defineConfig({
   plugins: [react()],
   server:{
     proxy:{
-      "/weights":"http://localhost:4000"
+      "/weights":"http://localhost:4000",
+      "/users":"http://localhost:4000"
     }
   }
 })

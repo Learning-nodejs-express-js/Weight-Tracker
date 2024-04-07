@@ -1,4 +1,5 @@
 import { createContext, useEffect, useReducer } from "react"
+import useUser from "../components/hooks/useUser"
 
 type weighttype={
     _id: string,
@@ -21,8 +22,12 @@ type addweight={
 type:"ADD_WEIGHT",
 payload:weighttype
 }
+type logout={
+    type:"LOGOUT",
+    
+}
 
-type weightactiontype=addweights|deleteweights|addweight
+type weightactiontype=addweights|deleteweights|addweight|logout
 
 
 type weightcontexttype={
@@ -39,6 +44,8 @@ const WeightReducer=(state:weighttype[],action:weightactiontype)=>{
             return state.filter((weight)=>{return weight._id!==action.payload._id;})
         case "ADD_WEIGHT":
             return [...state,action.payload]
+        case "LOGOUT":
+            return [];
         default:
             return state;
     }
@@ -49,20 +56,28 @@ export const WeightContext=createContext<null | weightcontexttype>(null)
 
 const WeightContextProvider = ({children}:{children:React.ReactNode}) => {
     const [state,dispatch]=useReducer(WeightReducer,[] as weighttype[])
-    
+    const {state:userstate}=useUser()
     useEffect(()=>{
         const fetchweights=async()=>{
             try{
-                const response=await fetch("/weights")
-                const weights=await response.json()
-                dispatch({type:"ADD_WEIGHTS",payload:weights})
+                if(userstate){
+                    const response=await fetch("/weights",{
+                        method:"GET",
+                        headers:{
+                            "Content-type":"application/json",
+                            "authorization":`Bearer ${userstate.token}`
+                        }
+                    })
+                    const weights=await response.json()
+                    dispatch({type:"ADD_WEIGHTS",payload:weights})
+                }
             }
             catch(error){
                 dispatch({type:"ADD_WEIGHTS",payload:[]})
             }
         }
         fetchweights()
-    },[])
+    },[userstate])
 
 
 
